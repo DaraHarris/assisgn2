@@ -27,8 +27,6 @@ public class FindKeywordGUI extends Application {
 	BufferedIOStream bis = new BufferedIOStream();
 	ProgrammerManaged pmba = new ProgrammerManaged();
 
-
-
 	Label inputLabel;
 	TextField inputTextField;
 	Button btnInputFile;
