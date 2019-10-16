@@ -5,7 +5,7 @@ import java.util.Hashtable;
  * HashTableManager class is responsible to manage all operation related to hashtable
  *
  * @author Sharmik Hirpara
- * @since 31/08/2019
+ * @since 13/10/2019
  */
 
 public class HashTableManager {
@@ -20,12 +20,12 @@ public class HashTableManager {
 
     public static String getHashTable() {
     	String result = "";
-    	String[] displayKeys = hashtable.keySet().toArray(new String[hashtable.keySet().size()]);    // Save all keywords in array
+    	String[] displayKeys = hashtable.keySet().toArray(new String[hashtable.keySet().size()]);  // Save all keywords in array
 		for(int i = 0; i < hashtable.keySet().size(); i++) {
 			result += "\n-------------------------------------------------------";
 			result += "\nKeyword: " + displayKeys[i];
 			for(int j = 0; j < hashtable.get(displayKeys[i]).size(); j++) {
-				result += "\nSnippet " + (j+1) + ": "+ hashtable.get(displayKeys[i]).get(j); // Display all snippets
+				result += "\nSnippet " + (j+1) + ": "+ hashtable.get(displayKeys[i]).get(j);       // Display all snippets
 			}
 		}
 		result += ("\n-------------------------------------------------------\n");
@@ -50,11 +50,11 @@ public class HashTableManager {
      */
 
     public static void updateHashTable(String keyword, String snippet) {
-        if(hashtable.containsKey(keyword))                                                           // Check if keyword already exist in hashtable
-        	hashtable.get(keyword).add(snippet);                                                     // Put string in hash table along without keyword
+        if(hashtable.containsKey(keyword))                                                         // Check if keyword already exist in hashtable
+        	hashtable.get(keyword).add(snippet);                                                   // Put string in hash table along without keyword
         else {
-            hashtable.put(keyword, new ArrayList<>());                                               // Put keyword in hashtable and initialise arraylist
-            hashtable.get(keyword).add(snippet);                                                     // Add snippet in arraylist
+            hashtable.put(keyword, new ArrayList<>());                                             // Put keyword in hashtable and initialise arraylist
+            hashtable.get(keyword).add(snippet);                                                   // Add snippet in arraylist
         }
     }
 
@@ -65,12 +65,12 @@ public class HashTableManager {
      */
     
     public static void displayHashTable() {
-    	String[] displayKeys = hashtable.keySet().toArray(new String[hashtable.keySet().size()]);    // Save all keywords in array
+    	String[] displayKeys = hashtable.keySet().toArray(new String[hashtable.keySet().size()]);  // Save all keywords in array
 		for(int i = 0; i < hashtable.keySet().size(); i++) {
             System.out.println("-------------------------------------------------------");
 			System.out.println("Keyword: " + displayKeys[i]);
 			for(int j = 0; j < hashtable.get(displayKeys[i]).size(); j++) {
-				System.out.println("Snippet " + (j+1) + ": "+ hashtable.get(displayKeys[i]).get(j)); // Display all snippets
+				System.out.println("Snippet " + (j+1) + ": " + hashtable.get(displayKeys[i]).get(j));// Display all snippets
 			}
 		}
         System.out.println("-------------------------------------------------------");

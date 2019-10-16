@@ -38,13 +38,13 @@ public class ProgrammerManaged {
     		
         	byte[] inputData = new byte[bufferSize];
     		
-            startTime = System.nanoTime();                                                  // Save start time before reading from file
+            startTime = System.nanoTime();                                                      // Save start time before reading from file
     		
-            while (fis.read(inputData) != -1) {                             		        // Read data from file into ByteBuffer
-    			output = new String (inputData);							                // Convert byte buffer into string
-        		for(int i = 0; i < keywords.length; i++) {                                  // Search for keywords in string
-                	if(output.contains(keywords[i])) {									    // Check if string contains keyword or not
-                        HashTableManager.updateHashTable(keywords[i], output);                                        // Save snippet in hashtable
+            while (fis.read(inputData) != -1) {                             		            // Read data from file into ByteBuffer
+    			output = new String (inputData);							                    // Convert byte buffer into string
+        		for(int i = 0; i < keywords.length; i++) {                                      // Search for keywords in string
+                	if(output.contains(keywords[i])) {									        // Check if string contains keyword or not
+                        HashTableManager.updateHashTable(keywords[i], output);                  // Save snippet in hashtable
         			}
                 }
     		}
@@ -83,9 +83,9 @@ public class ProgrammerManaged {
     public static void saveToTextFile(String outputFilePath) {
         try (FileOutputStream fos = new FileOutputStream(outputFilePath)) {
             String output = getOutput();
-            byte[] inputData = new byte[output.getBytes().length];
-            inputData = output.getBytes();
-            fos.write(inputData);                                               // Write data from ByteBuffer to file
+            byte[] inputData = new byte[output.getBytes().length];                              // Declare the size of byte buffer with length of output bytes
+            inputData = output.getBytes();                                                      // Store bytes in byte buffer
+            fos.write(inputData);                                                               // Write data into text file
         } catch (IOException ex) {
             ex.printStackTrace();
         }
