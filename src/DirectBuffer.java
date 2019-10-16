@@ -29,8 +29,7 @@ public class DirectBuffer {
      * @exception FileNotFoundException if file not found or invalid directory
      */
 
-    public static void ReadDirectBuffer(int bufferSize, String inputFilePath, 
-    									String[] keywords) {
+    public static void ReadDirectBuffer(int bufferSize, String inputFilePath, String[] keywords) {
 
     	int count = 0;
         String output = "";
@@ -51,8 +50,8 @@ public class DirectBuffer {
     			directByteBuffer.get(compareByte);	                                                 // Copy data from buffer
     			output = new String (compareByte);                                                   // Covert byte array into string
     			for(int i = 0; i < keywords.length ; i++) {                                          // Search for keywords in string
-                    if(output.contains(keywords[i]))                                               // Check if string contains keyword or not
-            			HashTableManager.updateHashTable(keywords[i], output);                                        // Save snippet in hashtable
+                    if(output.contains(keywords[i]))                                                 // Check if string contains keyword or not
+            			HashTableManager.updateHashTable(keywords[i], output);                       // Save snippet in hashtable
                 }
     		    directByteBuffer.clear();                                                            // Clear byte buffer for the next read
     		}
@@ -60,7 +59,7 @@ public class DirectBuffer {
     		elapsedTime = System.nanoTime() - startTime;
     		System.out.println("\nElapsed Time is " + (elapsedTime / 1000000.0) + " msec");          // Display time elapsed for this opetaion
     		
-    		HashTableManager.displayHashTable();                                                                      // Display hashtable
+    		HashTableManager.displayHashTable();                                                     // Display hashtable
     		
     	} catch (IOException ex) {
     		ex.printStackTrace();
@@ -76,11 +75,11 @@ public class DirectBuffer {
 
     public static void saveToTextFile(String outputFilePath) {
         try (FileChannel fos = new FileOutputStream(outputFilePath).getChannel()) {
-            String output = getOutput();
-            ByteBuffer directByteBuffer = ByteBuffer.allocateDirect(output.getBytes().length);
-            directByteBuffer.put(output.getBytes());
-            directByteBuffer.flip();
-            fos.write(directByteBuffer);
+            String output = getOutput();                                                            // Get output from hashtable
+            ByteBuffer directByteBuffer = ByteBuffer.allocateDirect(output.getBytes().length);      // Declare the size of byte buffer with length of output bytes
+            directByteBuffer.put(output.getBytes());                                                // Store bytes in byte buffer
+            directByteBuffer.flip();                                                                // Flip buffer to reset index
+            fos.write(directByteBuffer);                                                            // Write data into text file
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -102,10 +101,9 @@ public class DirectBuffer {
     }
     
     /**
-     * doubleToByteArray function converts double into string and then into byte array
+     * getOutput function returns the content of hashtable 
      *
-     * @param time holds time elapsed for this method
-     * @return ByteBuffer
+     * @return String
      */
 
     public static String getOutput() {

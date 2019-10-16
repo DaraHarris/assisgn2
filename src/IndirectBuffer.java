@@ -49,7 +49,7 @@ public class IndirectBuffer {
         			byte[] compareByte = new byte[count];                                               // Initialise byte array to display data
         			indirectByteBuffer.get(compareByte, 0, count);	                                    // Copy data from buffer
         			output = new String (compareByte);                                                  // Convert byte buffer into string
-            		for(int i = 0; i < keywords.length ; i++)                                         // Search for keywords in string
+            		for(int i = 0; i < keywords.length ; i++)                                           // Search for keywords in string
                     	if(output.contains(keywords[i])) {                                              // Check if string contains keyword or not
                             HashTableManager.updateHashTable(keywords[i], output);
                     }
@@ -57,7 +57,7 @@ public class IndirectBuffer {
         		}
 
         		elapsedTime = System.nanoTime() - startTime;
-        		System.out.println("\nElapsed Time is " + (elapsedTime / 1000000.0) + " msec");             // Display time elapsed for this opetaion
+        		System.out.println("\nElapsed Time is " + (elapsedTime / 1000000.0) + " msec");         // Display time elapsed for this opetaion
 
                 HashTableManager.displayHashTable();
 
@@ -75,11 +75,11 @@ public class IndirectBuffer {
 
     public static void saveToTextFile(String outputFilePath) {
         try (FileChannel fos = new FileOutputStream(outputFilePath).getChannel()) {
-            String output = getOutput();
-            ByteBuffer indirectByteBuffer = ByteBuffer.allocateDirect(output.getBytes().length);
-            indirectByteBuffer.put(output.getBytes());
-            indirectByteBuffer.flip();
-            fos.write(indirectByteBuffer);
+            String output = getOutput();                                                                // Get output from hashtable
+            ByteBuffer indirectByteBuffer = ByteBuffer.allocateDirect(output.getBytes().length);        // Declare the size of byte buffer with length of output bytes
+            indirectByteBuffer.put(output.getBytes());                                                  // Store bytes in byte buffer
+            indirectByteBuffer.flip();                                                                  // Flip buffer to reset index
+            fos.write(indirectByteBuffer);                                                              // Write data into text file
         } catch (IOException ex) {
             ex.printStackTrace();
         }
