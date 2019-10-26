@@ -23,7 +23,7 @@ public class AdditionModel{
 	private DocumentBuilder docBuilder = null;
 	private NodeList nodeList;
 	
-	public void catergorizeKeywordsToHashtable(String selectedFile) {
+	public void catergorizeKeywordsToHashtable(File selectedFile) {
 		
 		try {
 			docBuilder = factory.newDocumentBuilder();			
@@ -68,10 +68,13 @@ public class AdditionModel{
 			if(hMap.containsKey(key)) {
 				int value = hMap.get(key)+1;
 				hMap.put(key,value);
+				System.out.print(hMap.get(key));
 			} else {
 				hMap.put(key,1);
+				System.out.print(hMap.get(key));
 			}
 		}	
+		
 	}
 	
 	//GET DATA IN A TREE FORMAT OR INDENTION
@@ -87,8 +90,7 @@ public class AdditionModel{
 		}
 		return "Not Found";
 	}
-	
-	
+	//get data as per node
 	public static String transferNodeToSring(Node node) {
 		try {
 			TransformerFactory tf = TransformerFactory.newInstance();
@@ -183,8 +185,7 @@ public class AdditionModel{
 	}
 	
 	//return frequency according to key
-	public int getDataFromHashtable(String keyword) {
-		
+	public int getDataFromHashtable(String keyword) {	
 		for(int i = 0; i < hMap.size();i++) {
 			if(hMap.containsKey(keyword)) {
 				hMap.get(keyword);

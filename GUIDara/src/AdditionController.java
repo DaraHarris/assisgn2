@@ -57,16 +57,13 @@ public class AdditionController implements EventHandler<Event>{
 		return filePath;
 	}
 
+//	public static HashMap<String, int> getChartData(int rangeValue){
+//		
+//	}
+	
 	@Override
 	public void handle(Event event) {
-//		switch(buttonpressed) {
-//		case 1:
-//			//do saerchkeyword(event)
-//		case 2: 
-//			//do othermehtod(event);
-//		}
-//		
-	
+
 	}
 	public static File getFilePath() {
 		

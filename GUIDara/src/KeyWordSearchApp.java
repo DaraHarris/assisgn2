@@ -14,12 +14,13 @@ public class KeyWordSearchApp extends Application {
 		AdditionView view = new AdditionView();
 		AdditionController controller = new AdditionController(view, model,primaryStage);
 		
-		
 		Scene scene = new Scene(view.asParent(),1000,800);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Keyword Search Ranking");
 		primaryStage.show();
 		
+		File selectedFile = new File("imdb.xml");
+		model.catergorizeKeywordsToHashtable(selectedFile);
 //		File selectedFile = new File("imdb.xml");
 //		model.loadDataFromXML(selectedFile);
 	
